@@ -26,7 +26,10 @@ class UserController extends Controller {
   }
 
   login(req,res,next) {
-    this.userService.login();
+    const { body } = req;
+    const { username, password } = body;
+      console.log(body);
+    this.userService.login(username, password);
     res.send('');
   }
 }

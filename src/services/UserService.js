@@ -3,9 +3,8 @@ class UserService {
     this.mongoService = mongoService;
   }
 
-  login() {
-
-
+  login(username, password) {
+    this.mongoService.login(username, password);
   }
 
   createUser(username, password) {
