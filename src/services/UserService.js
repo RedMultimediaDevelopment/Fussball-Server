@@ -3,8 +3,9 @@ class UserService {
     this.mongoService = mongoService;
   }
 
-  login(username, password) {
-    this.mongoService.login(username, password);
+  async login(username, password) {
+    return this.mongoService.login(username, password);
+
   }
 
   createUser(username, password) {

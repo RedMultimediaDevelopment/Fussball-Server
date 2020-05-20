@@ -20,7 +20,6 @@ class UserController extends Controller {
   createUser(req, res, next) {
     const { body } = req;
     const { username, password } = body;
-    console.log(body);
     this.userService.createUser(username, password);
     res.send('');
   }
@@ -28,9 +27,18 @@ class UserController extends Controller {
   login(req,res,next) {
     const { body } = req;
     const { username, password } = body;
-      console.log(body);
-    this.userService.login(username, password);
-    res.send('');
+    this.userService.login(username, password).then(succesfull => {
+      if (succesfull) {
+      res.status(200) // OK
+    } else{
+      res.status(401) // Unauthorized
+    }
+      res.send('');
+    }).catch(e => {
+      res.status(401);
+      res.send('');
+    });
+
   }
 }
 

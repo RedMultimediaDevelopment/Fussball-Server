@@ -24,17 +24,16 @@ class MongoService {
   }
 
   async login(username, password) {
-    await this.user_collection.findOne(
-       {
-         user: username,
-         pwd: password,
-
-       }
-     ).catch(err => console.error(`Failed to get item: ${err}`))
+    const user = await this.user_collection.findOne(
+     {
+       user: username
+     }
+    );
+    if (user.pwd === password) {
+      return true;
+    }
+    return false;
    }
-
-
-
 }
 
 module.exports = MongoService;
